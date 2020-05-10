@@ -121,8 +121,8 @@ another_df <- data.frame(property_df$County, property_df$Price)
 str(another_df) #structure of data frame
 
 summary(another_df)
-
 #displaying counties with the number of houses in ascending order
+sort(table(another_df$property_df.County), increasing = TRUE)
  
 
 #plotting the data points
