@@ -3,6 +3,10 @@ library(plyr)
 library(readr)
 # Loading dataset
 property_da <- read.csv('C:/Users/Saketh Vanam/Downloads/Data Science/Property_Price_Register.csv')
+
+#Removing € from price column
+property_da$Price = as.numeric(gsub("[\\€,]", "", property_df$Price))
+property_da$Price
 #displaying the structure of dataset 
 str(property_da)
 
@@ -26,9 +30,6 @@ md.pattern(property_df)
 colnames(property_df) <- c("Date", "Address", "Postal_code", "County", "Price", "Market_price", "VAT_Exclusive", "Description")
 str(property_df)
 
-#Removing € from price column
-property_df$Price = as.numeric(gsub("[\\€,]", "", property_df$Price))
-property_df$Price
 
 #changing date field from factor to date and extracting only year from it.
 date_field <- as.character(property_df$Date)
@@ -38,7 +39,7 @@ year_field <- format(as.Date(property_df$Date, format="%d/%m/%Y"),"%Y")
 property_df$Date <- year_field
 str(property_df)
 property_df$Date <- as.numeric(property_df$Date)
-str(property_df)
+str(property_df) 
 summary(property_df)
 barplot(table(property_df$Date)) #bar plot
 densityplot(property_df$Date)
